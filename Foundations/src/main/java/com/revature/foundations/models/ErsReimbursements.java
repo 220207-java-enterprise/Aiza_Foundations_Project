@@ -1,13 +1,14 @@
 package com.revature.foundations.models;
 
+import java.sql.Timestamp;
 import java.util.Objects;
 
-public class ErsReimbursements{
+public class ErsReimbursements {
 
     private String reimbId;
     private int amount;
-    private int submitted;
-    private int resolved;
+    private Timestamp submitted;
+    private Timestamp resolved;
     private String description;
     private byte receipt;
     private String paymentId;
@@ -21,7 +22,7 @@ public class ErsReimbursements{
         super();
     }
 
-    public ErsReimbursements(String reimbId, int amount, int submitted, int resolved, String description, byte receipt, String paymentId,
+    public ErsReimbursements(String reimbId, int amount, Timestamp submitted, Timestamp resolved, String description, byte receipt, String paymentId,
             String authorId, String resolverId, String statusId,String typeId){
         this.reimbId = reimbId;
         this.amount = amount;
@@ -41,67 +42,85 @@ public class ErsReimbursements{
         return reimbId;
     }
 
-    public void setReimbId(String id) {
+    public void setReimbId(String reimbId) {
         this.reimbId = reimbId;
     }
 
-    public String getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    public String getSubmitted() {
+    public Timestamp getSubmitted() {
         return submitted;
     }
 
-    public void setSubmitted(String submitted) { this.submitted = submitted; }
+    public void setSubmitted(Timestamp submitted) {
+        this.submitted = submitted;
+    }
 
-    public String getResolved() { return resolved; }
+    public Timestamp getResolved() {
+        return resolved;
+    }
 
-    public void setResolved(String resolved) {
+    public void setResolved(Timestamp resolved) {
         this.resolved = resolved;
     }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getReceipt() { return receipt; }
+    public byte getReceipt() {
+        return receipt;
+    }
 
-    public void setReceipt(String receipt) {
+    public void setReceipt(byte receipt) {
         this.receipt = receipt;
     }
 
-    public String getPaymentId() { return paymentId; }
+    public String getPaymentId() {
+        return paymentId;
+    }
 
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
     }
 
-    public String getAuthorId() { return authorId; }
+    public String getAuthorId() {
+        return authorId;
+    }
 
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
 
-    public String getResolverId() { return resolverId; }
+    public String getResolverId() {
+        return resolverId;
+    }
 
     public void setResolverId(String resolverId) {
         this.resolverId = resolverId;
     }
 
-    public String getStatusId() { return statusId; }
+    public String getStatusId() {
+        return statusId;
+    }
 
     public void setStatusId(String statusId) {
         this.statusId = statusId;
     }
 
-    public String getTypeId() { return typeId; }
+    public String getTypeId() {
+        return typeId;
+    }
 
     public void setTypeId(String typeId) {
         this.typeId = typeId;
@@ -111,34 +130,29 @@ public class ErsReimbursements{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ErsReimbursements ersReimbursements = (ErsReimbursements) o;
-        return Objects.equals(reimbId, ersReimbursements.reimbId) && Objects.equals(amount, ersReimbursements.amount)
-                && Objects.equals(submitted, ersReimbursements.submitted) && Objects.equals(resolved, ersReimbursements.resolved)
-                && Objects.equals(description, ersReimbursements.description) && Objects.equals(receipt, ersReimbursements.receipt)
-                && Objects.equals(paymentId, ersReimbursements.paymentId) && Objects.equals(authorId, ersReimbursements.authorId)
-                && Objects.equals(resolverId, ersReimbursements.resolverId) && Objects.equals(statusId, ersReimbursements.statusId)
-                && Objects.equals(typeId, ersReimbursements.typeId);
+        ErsReimbursements that = (ErsReimbursements) o;
+        return amount == that.amount && receipt == that.receipt && Objects.equals(reimbId, that.reimbId) && Objects.equals(submitted, that.submitted) && Objects.equals(resolved, that.resolved) && Objects.equals(description, that.description) && Objects.equals(paymentId, that.paymentId) && Objects.equals(authorId, that.authorId) && Objects.equals(resolverId, that.resolverId) && Objects.equals(statusId, that.statusId) && Objects.equals(typeId, that.typeId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, questionText, answerText, creatorId);
+        return Objects.hash(reimbId, amount, submitted, resolved, description, receipt, paymentId, authorId, resolverId, statusId, typeId);
     }
 
     @Override
     public String toString() {
         return "ErsReimbursements{" +
                 "reimbId='" + reimbId + '\'' +
-                ", amount='" + amount + '\'' +
-                ", submitted='" + submitted + '\'' +
-                ", resolved='" + resolved + '\'' +
-                ", description=" + description + '\'' +
-                ", receipt=" + receipt + '\'' +
-                ", paymentId=" + paymentId + '\'' +
-                ", authorId=" + authorId + '\'' +
-                ", resolverId=" + resolverId + '\'' +
-                ", statusId=" + statusId + '\'' +
+                ", amount=" + amount +
+                ", submitted=" + submitted +
+                ", resolved=" + resolved +
+                ", description='" + description + '\'' +
+                ", receipt=" + receipt +
+                ", paymentId='" + paymentId + '\'' +
+                ", authorId='" + authorId + '\'' +
+                ", resolverId='" + resolverId + '\'' +
+                ", statusId='" + statusId + '\'' +
+                ", typeId='" + typeId + '\'' +
                 '}';
     }
-
 }

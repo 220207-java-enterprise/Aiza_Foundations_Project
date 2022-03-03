@@ -5,6 +5,7 @@ import com.revature.foundations.daos.UserDAO;
 import com.revature.foundations.services.UserService;
 import com.revature.foundations.servlets.AuthServlet;
 import com.revature.foundations.servlets.UserServlet;
+import com.revature.foundations.services.TokenService;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -14,14 +15,16 @@ public class ContextLoaderListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("Initializing Quizzard web application");
+        System.out.println("Initializing ERS application");
 
         ObjectMapper mapper = new ObjectMapper();
+        JwtConfig jwtConfig = new JwtConfig();
+        TokenService tokenService = new TokenService(jwtConfig);
 
         UserDAO userDAO = new UserDAO();
         UserService userService = new UserService(userDAO);
-        UserServlet userServlet = new UserServlet(userService, mapper);
-        AuthServlet authServlet = new AuthServlet(userService, mapper);
+        UserServlet userServlet = new UserServlet(tokenService, userService, mapper);
+        AuthServlet authServlet = new AuthServlet(tokenService, userService, mapper);
 
         // Programmatic Servlet Registration
         ServletContext context = sce.getServletContext();

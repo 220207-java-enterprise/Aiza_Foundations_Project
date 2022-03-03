@@ -3,15 +3,15 @@ package com.revature.foundations.services;
 import com.revature.foundations.dtos.requests.LoginRequest;
 import com.revature.foundations.dtos.requests.NewUserRequest;
 import com.revature.foundations.dtos.responses.AppUserResponse;
-import com.revature.foundations.models.AppUser;
+import com.revature.foundations.models.ErsUser;
 import com.revature.foundations.daos.UserDAO;
+import com.revature.foundations.models.ErsUserRoles;
 import com.revature.foundations.models.UserRole;
 import com.revature.foundations.util.exceptions.AuthenticationException;
 import com.revature.foundations.util.exceptions.InvalidRequestException;
 import com.revature.foundations.util.exceptions.ResourceConflictException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -38,13 +38,13 @@ public class UserService {
         // Java 8+ mapping logic (with Streams)
         return userDAO.getAll()
                 .stream()
-                .map(AppUserResponse::new)
-                .collect(Collectors.toList());
+                .map(AppUserResponse::new) // intermediate operation
+                .collect(Collectors.toList()); // terminal operation
     }
 
-    public AppUser register(NewUserRequest newUserRequest) throws IOException {
+    public ErsUser register(NewUserRequest newUserRequest) {
 
-        AppUser newUser = newUserRequest.extractUser();
+        ErsUser newUser = newUserRequest.extractUser();
 
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Bad registration details given.");
@@ -62,14 +62,14 @@ public class UserService {
 
         // TODO encrypt provided password before storing in the database
 
-        newUser.setId(UUID.randomUUID().toString());
-        newUser.setRole(new UserRole("7c3521f5-ff75-4e8a-9913-01d15ee4dc97", "BASIC_USER")); // All newly registered users start as BASIC_USER
+        newUser.setUserId(UUID.randomUUID().toString());
+        newUser.setRole(new ErsUserRoles("7c3521f5-ff75-4e8a-9913-01d15ee4dc97", "BASIC_USER")); // All newly registered users start as BASIC_USER
         userDAO.save(newUser);
 
         return newUser;
     }
 
-    public AppUser login(LoginRequest loginRequest) {
+    public ErsUser login(LoginRequest loginRequest) {
 
         String username = loginRequest.getUsername();
         String password = loginRequest.getPassword();
@@ -80,7 +80,7 @@ public class UserService {
 
         // TODO encrypt provided password (assumes password encryption is in place) to see if it matches what is in the DB
 
-        AppUser authUser = userDAO.findUserByUsernameAndPassword(username, password);
+        ErsUser authUser = userDAO.findUserByUsernameAndPassword(username, password);
 
         if (authUser == null) {
             throw new AuthenticationException();
@@ -90,10 +90,10 @@ public class UserService {
 
     }
 
-    private boolean isUserValid(AppUser appUser) {
+    public boolean isUserValid(ErsUser appUser) {
 
         // First name and last name are not just empty strings or filled with whitespace
-        if (appUser.getFirstName().trim().equals("") || appUser.getLastName().trim().equals("")) {
+        if (appUser.getGivenName().trim().equals("") || appUser.getSurname().trim().equals("")) {
             return false;
         }
 
@@ -128,10 +128,12 @@ public class UserService {
     }
 
     public boolean isUsernameAvailable(String username) {
+        if (username == null || !isUsernameValid(username)) return false;
         return userDAO.findUserByUsername(username) == null;
     }
 
     public boolean isEmailAvailable(String email) {
+        if (email == null || !isEmailValid(email)) return false;
         return userDAO.findUserByEmail(email) == null;
     }
 

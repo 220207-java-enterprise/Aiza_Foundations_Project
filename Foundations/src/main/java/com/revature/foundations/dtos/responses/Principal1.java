@@ -2,22 +2,18 @@ package com.revature.foundations.dtos.responses;
 
 import com.revature.foundations.models.ErsUser;
 
-public class AppUserResponse {
+public class Principal1 {
 
     private String userId;
-    private String givenName;
-    private String surname;
     private String username;
     private String role;
 
-    public AppUserResponse() {
+    public Principal1() {
         super();
     }
 
-    public AppUserResponse(ErsUser user) {
+    public Principal1(ErsUser user) {
         this.userId = user.getUserId();
-        this.givenName = user.getGivenName();
-        this.surname = user.getSurname();
         this.username = user.getUsername();
         this.role = user.getRole().getRole();
     }
@@ -28,22 +24,6 @@ public class AppUserResponse {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getGivenName() {
-        return givenName;
-    }
-
-    public void setGivenName(String givenName) {
-        this.givenName = givenName;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getUsername() {
@@ -61,4 +41,15 @@ public class AppUserResponse {
     public void setRole(String role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "Principal{" +
+                "userId='" + userId + '\'' +
+                ", username='" + username + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
+
 }
+
