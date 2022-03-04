@@ -19,44 +19,7 @@ import com.revature.foundations.services.TokenService;
 
 public class AuthServlet extends HttpServlet {
 
-    //    private final UserService userService;
-//    private final ObjectMapper mapper;
-//
-//    public AuthServlet(UserService userService, ObjectMapper mapper) {
-//        this.userService = userService;
-//        this.mapper = mapper;
-//    }
-//
-//    // Login endpoint
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//
-//        PrintWriter writer = resp.getWriter();
-//
-//        try {
-//
-//            LoginRequest loginRequest = mapper.readValue(req.getInputStream(), LoginRequest.class);
-//            Principal principal = new Principal(userService.login(loginRequest));
-//            String payload = mapper.writeValueAsString(principal);
-//
-//            // Stateful session management
-//            HttpSession httpSession = req.getSession();
-//            httpSession.setAttribute("authUser", principal);
-//            resp.setContentType("application/json");
-//            writer.write(payload);
-//
-//
-//        } catch (InvalidRequestException | DatabindException e) {
-//            resp.setStatus(400);
-//        } catch (AuthenticationException e) {
-//            resp.setStatus(401); // UNAUTHORIZED (no user found with provided credentials)
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            resp.setStatus(500);
-//        }
-//    }
-//
-//}
+
     private final TokenService tokenService;
     private final UserService userService;
     private final ObjectMapper mapper;

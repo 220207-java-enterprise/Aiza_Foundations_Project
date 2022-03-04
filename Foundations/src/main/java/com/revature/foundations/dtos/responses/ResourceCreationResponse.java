@@ -4,7 +4,7 @@ public class ResourceCreationResponse {
 
     private String userId;
 
-    public ResourceCreationResponse(String id) {
+    public ResourceCreationResponse(String userId) {
         this.userId = userId;
     }
 
@@ -12,7 +12,7 @@ public class ResourceCreationResponse {
         return userId;
     }
 
-    public void setUserId(String id) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

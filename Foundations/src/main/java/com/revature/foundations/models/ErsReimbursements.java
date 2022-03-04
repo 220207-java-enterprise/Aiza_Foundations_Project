@@ -6,7 +6,7 @@ import java.util.Objects;
 public class ErsReimbursements {
 
     private String reimbId;
-    private int amount;
+    private double amount;
     private Timestamp submitted;
     private Timestamp resolved;
     private String description;
@@ -22,7 +22,7 @@ public class ErsReimbursements {
         super();
     }
 
-    public ErsReimbursements(String reimbId, int amount, Timestamp submitted, Timestamp resolved, String description, byte receipt, String paymentId,
+    public ErsReimbursements(String reimbId, double amount, Timestamp submitted, Timestamp resolved, String description, byte receipt, String paymentId,
             String authorId, String resolverId, String statusId,String typeId){
         this.reimbId = reimbId;
         this.amount = amount;
@@ -46,11 +46,11 @@ public class ErsReimbursements {
         this.reimbId = reimbId;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

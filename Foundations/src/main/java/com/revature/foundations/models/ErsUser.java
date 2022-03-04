@@ -32,6 +32,15 @@ public class ErsUser {
         this.role = roleId;
     }
 
+    public ErsUser(String username, String email, String password, String givenName, String surname, Boolean isActive) {
+
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.givenName = givenName;
+        this.surname = surname;
+        this.isActive = isActive;
+    }
 
     public String getUserId() {
         return userId;

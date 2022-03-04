@@ -124,9 +124,9 @@
 //            try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 //
 //                conn.setAutoCommit(false);
-//                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO app_users VALUES (?, ?, ?, ?, ?, ?, ?)");
+//                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO app_users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 //                pstmt.setString(1, newUser.getReimbId());
-//                pstmt.setInt(2, newUser.getAmount());
+//                pstmt.setDouble(2, newUser.getAmount());
 //                pstmt.setTimestamp(3, newUser.getSubmitted());
 //                pstmt.setTimestamp(4, newUser.getResolved());
 //                pstmt.setString(5, newUser.getDescription());
@@ -165,17 +165,17 @@
 //                ResultSet rs = pstmt.executeQuery();
 //                if (rs.next()) {
 //                    user = new ErsReimbursements();
-//                    user.setReimbId(rs.getString("reimId"));
-//                    user.setAmount(rs.getInt("amount"));
-//                    user.setSubmitted(rs.getTimestamp("submitted"));
-//                    user.setResolved(rs.getTimestamp("resolved"));
-//                    user.setDescription(rs.getString("description"));
+//                    user.setReimbId(rs.getString("Reimb_id"));
+//                    user.setAmount(rs.getInt("Amount"));
+//                    user.setSubmitted(rs.getTimestamp("Submitted"));
+//                    user.setResolved(rs.getTimestamp("Resolved"));
+//                    user.setDescription(rs.getString("Description"));
 //                   // user.setReceipt(rs.getString("receipt"));
-//                    user.setPaymentId(rs.getString("paymentId"));
-//                    user.setAuthorId(rs.getString("authorId"));
-//                    user.setResolverId(rs.getString("resolverId"));
-//                    user.setStatusId(rs.getString("statusId"));
-//                    user.setTypeId(rs.getString("typeId"));
+//                    user.setPaymentId(rs.getString("Payment_id"));
+//                    user.setAuthorId(rs.getString("Author_id"));
+//                    user.setResolverId(rs.getString("Resolver_id"));
+//                    user.setStatusId(rs.getString("Status_id"));
+//                    user.setTypeId(rs.getString("Type_id"));
 //
 //                }
 //
@@ -197,17 +197,17 @@
 //                ResultSet rs = conn.createStatement().executeQuery(rootSelect);
 //                while (rs.next()) {
 //                    ErsReimbursements user = new ErsReimbursements();
-//                    user.setReimbId(rs.getString("reimId"));
-//                    user.setAmount(rs.getInt("amount"));
-//                    user.setSubmitted(rs.getTimestamp("submitted"));
-//                    user.setResolved(rs.getTimestamp("resolved"));
-//                    user.setDescription(rs.getString("description"));
+//                    user.setReimbId(rs.getString("Reimb_id"));
+//                    user.setAmount(rs.getInt("Amount"));
+//                    user.setSubmitted(rs.getTimestamp("Submitted"));
+//                    user.setResolved(rs.getTimestamp("Resolved"));
+//                    user.setDescription(rs.getString("Description"));
 //                   // user.setReceipt(rs.getString("receipt"));
-//                    user.setPaymentId(rs.getString("paymentId"));
-//                    user.setAuthorId(rs.getString("authorId"));
-//                    user.setResolverId(rs.getString("resolverId"));
-//                    user.setStatusId(rs.getString("statusId"));
-//                    user.setTypeId(rs.getString("typeId"));
+//                    user.setPaymentId(rs.getString("Payment_id"));
+//                    user.setAuthorId(rs.getString("Author_id"));
+//                    user.setResolverId(rs.getString("Resolver_id"));
+//                    user.setStatusId(rs.getString("Status_id"));
+//                    user.setTypeId(rs.getString("Type_id"));
 //
 //                }
 //            } catch (SQLException e) {
@@ -230,7 +230,7 @@
 //                        "password = ? " +
 //                        "WHERE id = ?");
 //                pstmt.setString(1, updatedUser.getReimbId());
-//                pstmt.setInt(2, updatedUser.getAmount());
+//                pstmt.setDouble(2, updatedUser.getAmount());
 //                pstmt.setTimestamp(3, updatedUser.getSubmitted());
 //                pstmt.setTimestamp(4, updatedUser.getResolved());
 //                pstmt.setString(5, updatedUser.getDescription());

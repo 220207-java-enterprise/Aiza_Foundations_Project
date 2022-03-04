@@ -11,12 +11,12 @@ public class NewUserRequest {
     private String givenName;
     private String surname;
     private Boolean isActive;
-    private ErsUserRoles roleId;
+    private String roleId;
 
     public NewUserRequest() {super();
     }
 
-    public NewUserRequest(String username, String email, String password, String givenName, String surname, Boolean isActive, ErsUserRoles roleId) {
+    public NewUserRequest(String username, String email, String password, String givenName, String surname, Boolean isActive, String roleId) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -24,6 +24,13 @@ public class NewUserRequest {
         this.surname = surname;
         this.isActive = isActive;
         this.roleId = roleId;
+    }
+    public NewUserRequest(String username, String email, String password, String givenName, String surname) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.givenName = givenName;
+        this.surname = surname;
     }
 
     public String getUsername() {
@@ -66,24 +73,24 @@ public class NewUserRequest {
         this.surname = surname;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
+    public void setIsActive(Boolean active) {
         isActive = active;
     }
 
-    public ErsUserRoles getRoleId() {
+    public String getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(ErsUserRoles roleId) {
+    public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
 
     public ErsUser extractUser(){
-        return new ErsUser(username, email, password, givenName, surname, isActive, roleId);
+        return new ErsUser(username, email, password, givenName, surname, isActive);
     }
 
     @Override
