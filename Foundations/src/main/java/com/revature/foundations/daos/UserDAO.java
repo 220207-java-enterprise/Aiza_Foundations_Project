@@ -128,7 +128,7 @@ public class UserDAO implements CrudDAO<ErsUser> {
             pstmt.setString(5, newUser.getGivenName());
             pstmt.setString(6, newUser.getSurname());
             pstmt.setBoolean(7, newUser.getIsActive());
-            pstmt.setString(8, newUser.getRole().getRoleId());
+            pstmt.setString(8, newUser.getRole().getRole());
 
 
             int rowsInserted = pstmt.executeUpdate();
@@ -203,70 +203,63 @@ public class UserDAO implements CrudDAO<ErsUser> {
         return users;
     }
 
-    @Override
-    public void update(ErsUser updatedObject) {
 
+    @Override
+    public void update(ErsUser updatedUser) {
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+            conn.setAutoCommit(false);
+            PreparedStatement pstmt = conn.prepareStatement("UPDATE ers_users " +
+                    "SET User_id = ?, " +
+                    "Username = ?, " +
+                    "Email = ?, " +
+                    "Password = ?, " +
+                    "GivenName = ? " +
+                    "Surname = ? " +
+                    "IsActive = ? " +
+                    "Role = ? " +
+                    "WHERE User_id = ?");
+            pstmt.setString(1, updatedUser.getUserId());
+            pstmt.setString(2, updatedUser.getUsername());
+            pstmt.setString(3, updatedUser.getEmail());
+            pstmt.setString(4, updatedUser.getPassword());
+            pstmt.setString(5, updatedUser.getGivenName());
+            pstmt.setString(6, updatedUser.getSurname());
+            pstmt.setBoolean(7, updatedUser.getIsActive());
+            pstmt.setString(8, updatedUser.getRole());
+
+            // TODO allow role to be updated as well
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted != 1) {
+                throw new ResourcePersistenceException("Failed to update user data within datasource.");
+            }
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            throw new DataSourceException(e);
+        }
     }
 
     @Override
     public void deleteById(String id) {
+        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
+            conn.setAutoCommit(false);
+            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM ers_users WHERE id = ?");
+            pstmt.setString(1, id);
+
+            int rowsInserted = pstmt.executeUpdate();
+            if (rowsInserted != 1) {
+                conn.rollback();
+                throw new ResourcePersistenceException("Failed to delete user from data source");
+            }
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            throw new DataSourceException(e);
+        }
     }
 }
-
-//    @Override
-//    public void update(ErsUser updatedUser) {
-//        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-//
-//            conn.setAutoCommit(false);
-//            PreparedStatement pstmt = conn.prepareStatement("UPDATE app_users " +
-//                    "SET first_name = ?, " +
-//                    "last_name = ?, " +
-//                    "email = ?, " +
-//                    "username = ?, " +
-//                    "password = ? " +
-//                    "WHERE id = ?");
-//            pstmt.setString(1, updatedUser.getUserId());
-//            pstmt.setString(2, updatedUser.getUsername());
-//            pstmt.setString(3, updatedUser.getEmail());
-//            pstmt.setString(4, updatedUser.getPassword());
-//            pstmt.setString(5, updatedUser.getGivenName());
-//            pstmt.setString(6, updatedUser.getSurname());
-//            pstmt.setBoolean(7, updatedUser.getIsActive());
-//            pstmt.setString(8, updatedUser.getR());
-//
-//            // TODO allow role to be updated as well
-//
-//            int rowsInserted = pstmt.executeUpdate();
-//            if (rowsInserted != 1) {
-//                throw new ResourcePersistenceException("Failed to update user data within datasource.");
-//            }
-//
-//            conn.commit();
-//
-//        } catch (SQLException e) {
-//            throw new DataSourceException(e);
-//        }
-//    }
-
-//    @Override
-//    public void deleteById(String id) {
-//        try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-//
-//            conn.setAutoCommit(false);
-//            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM ers_users WHERE id = ?");
-//            pstmt.setString(1, id);
-//
-//            int rowsInserted = pstmt.executeUpdate();
-//            if (rowsInserted != 1) {
-//                conn.rollback();
-//                throw new ResourcePersistenceException("Failed to delete user from data source");
-//            }
-//
-//            conn.commit();
-//
-//        } catch (SQLException e) {
-//            throw new DataSourceException(e);
-//        }
-//    }
-//}

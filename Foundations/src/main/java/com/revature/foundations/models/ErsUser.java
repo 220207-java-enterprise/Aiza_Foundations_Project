@@ -98,7 +98,7 @@ public class ErsUser {
         isActive = active;
     }
 
-    public ErsUserRoles getRole() {
+    public String getRole() {
         return role;
     }
 

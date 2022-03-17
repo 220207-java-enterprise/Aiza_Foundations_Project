@@ -25,7 +25,7 @@ public class UserService {
         this.userDAO = userDAO;
     }
 
-    public List<AppUserResponse> getAllUsers() {
+    public List<AppUserResponse> getAllUsers() {//Let's get all the user info in the database
 
         // Pre-Java 8 mapping logic (without Streams)
 //        List<AppUser> users = userDAO.getAll();
@@ -42,18 +42,18 @@ public class UserService {
                 .collect(Collectors.toList()); // terminal operation
     }
 
-    public ErsUser register(NewUserRequest newUserRequest) {
+    public ErsUser register(NewUserRequest newUserRequest) {//let's check the credentials
 
-        ErsUser newUser = newUserRequest.extractUser();
+        ErsUser newUser = newUserRequest.extractUser(); //get values for newUser in NewUserRequest (Get)
 
         if (!isUserValid(newUser)) {
-            throw new InvalidRequestException("Bad registration details given.");
+            throw new InvalidRequestException("Bad registration details given.");//not (valid credentials)
         }
 
-        boolean usernameAvailable = isUsernameAvailable(newUser.getUsername());
-        boolean emailAvailable = isEmailAvailable(newUser.getEmail());
+        boolean usernameAvailable = isUsernameAvailable(newUser.getUsername());//true or false is there a (username that already exist?)
+        boolean emailAvailable = isEmailAvailable(newUser.getEmail());//true or false is there a (password that already exist?)
 
-        if (!usernameAvailable || !emailAvailable) {
+        if (!usernameAvailable || !emailAvailable) {// OR (Do the credentials exist? Yes they do? Let's send a message if they do exist and are not available to be used)
             String msg = "The values provided for the following fields are already taken by other users: ";
             if (!usernameAvailable) msg += "username ";
             if (!emailAvailable) msg += "email";
@@ -62,27 +62,27 @@ public class UserService {
 
         // TODO encrypt provided password before storing in the database
 
-        newUser.setUserId(UUID.randomUUID().toString());
+        newUser.setUserId(UUID.randomUUID().toString());// let's create a random ID for the NEW User
         newUser.setRole(new ErsUserRoles("7c3521f5-ff75-4e8a-9913-01d15ee4dc97", "BASIC_USER")); // All newly registered users start as BASIC_USER
-        userDAO.save(newUser);
+        userDAO.save(newUser);//now let's (save) them in the system
 
         return newUser;
     }
 
     public ErsUser login(LoginRequest loginRequest) {
 
-        String username = loginRequest.getUsername();
-        String password = loginRequest.getPassword();
+        String username = loginRequest.getUsername();//let's get the username
+        String password = loginRequest.getPassword();//let's get the password
 
-        if (!isUsernameValid(username) || !isPasswordValid(password)) {
+        if (!isUsernameValid(username) || !isPasswordValid(password)) {//if wrong username or password (invalid credentials!)
             throw new InvalidRequestException("Invalid credentials provided!");
         }
 
         // TODO encrypt provided password (assumes password encryption is in place) to see if it matches what is in the DB
 
-        ErsUser authUser = userDAO.findUserByUsernameAndPassword(username, password);
+        ErsUser authUser = userDAO.findUserByUsernameAndPassword(username, password);//let's find the already existing user/pass
 
-        if (authUser == null) {
+        if (authUser == null) {//no user/pass
             throw new AuthenticationException();
         }
 
@@ -93,7 +93,7 @@ public class UserService {
     public boolean isUserValid(ErsUser appUser) {
 
         // First name and last name are not just empty strings or filled with whitespace
-        if (appUser.getGivenName().trim().equals("") || appUser.getSurname().trim().equals("")) {
+        if (appUser.getGivenName().trim().equals("") || appUser.getSurname().trim().equals("")) {//are these empty in the database? check other values to make sure
             return false;
         }
 

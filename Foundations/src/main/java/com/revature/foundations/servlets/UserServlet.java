@@ -40,15 +40,15 @@ public class UserServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//get all users from DB if authorized
 //        List<AppUserResponse> response = userService.getAllUsers();
 //        resp.setContentType("application/json");
 //        PrintWriter respWriter = resp.getWriter();
 //        String responseJson = mapper.writeValueAsString(response);
 //        respWriter.write(responseJson);
-        String[] reqFrags = req.getRequestURI().split("/");
-        if (reqFrags.length == 4 && reqFrags[3].equals("availability")) {
-            checkAvailability(req, resp);
+        String[] reqFrags = req.getRequestURI().split("/");//TODO what does this look like?
+        if (reqFrags.length == 4 && reqFrags[3].equals("availability")) {//let's make a request
+            checkAvailability(req, resp);//check if username and password are available, set response status
             return; // necessary, otherwise we end up doing more work than was requested
         }
 //
@@ -62,21 +62,21 @@ public class UserServlet extends HttpServlet {
 //        }
 //
 
-        Principal1 requester = tokenService.extractRequesterDetails(req.getHeader("Authorization"));
+        Principal1 requester = tokenService.extractRequesterDetails(req.getHeader("Authorization"));// creating header: requesting token of authorization
 
         if (requester == null) {
             logger.warn("Unauthenticated request made to UserServlet#doGet");
             resp.setStatus(401);
             return;
         }
-        if (!requester.getRole().equals("ADMIN")) {
+        if (!requester.getRole().equals("ADMIN")) {//if you have authorization
             logger.warn("Unauthorized request made by user: " + requester.getUsername());
             resp.setStatus(403); // FORBIDDEN
             return;
         }
 
-        List<AppUserResponse> users = userService.getAllUsers();
-        String payload = mapper.writeValueAsString(users);
+        List<AppUserResponse> users = userService.getAllUsers();//getting all users in dB
+        String payload = mapper.writeValueAsString(users);//writing string
         resp.setContentType("application/json");
         resp.getWriter().write(payload);
 
@@ -86,17 +86,17 @@ public class UserServlet extends HttpServlet {
 
     // registration endpoint
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {//register new user
 
         PrintWriter respWriter = resp.getWriter();
 
         try {
 
-            NewUserRequest newUserRequest = mapper.readValue(req.getInputStream(), NewUserRequest.class);
-            ErsUser newUser = userService.register(newUserRequest);
+            NewUserRequest newUserRequest = mapper.readValue(req.getInputStream(), NewUserRequest.class);//request new user
+            ErsUser newUser = userService.register(newUserRequest);//register new user
             resp.setStatus(201); // CREATED
             resp.setContentType("application/json");
-            String payload = mapper.writeValueAsString(new ResourceCreationResponse(newUser.getUserId()));
+            String payload = mapper.writeValueAsString(new ResourceCreationResponse(newUser.getUserId()));//write into the database
             respWriter.write(payload);
 
         } catch (InvalidRequestException | DatabindException e) {
@@ -115,7 +115,7 @@ public class UserServlet extends HttpServlet {
         String usernameValue = req.getParameter("username");
         String emailValue = req.getParameter("email");
         if (usernameValue != null) {
-            if (userService.isUsernameAvailable(usernameValue)) {
+            if (userService.isUsernameAvailable(usernameValue)) {//if username is available in the system
                 resp.setStatus(204); // NO CONTENT
             } else {
                 resp.setStatus(409);

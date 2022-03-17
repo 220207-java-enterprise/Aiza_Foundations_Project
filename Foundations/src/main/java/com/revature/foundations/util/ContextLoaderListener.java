@@ -26,16 +26,22 @@ public class ContextLoaderListener implements ServletContextListener {
         UserServlet userServlet = new UserServlet(tokenService, userService, mapper);
         AuthServlet authServlet = new AuthServlet(tokenService, userService, mapper);
 
+       // ErsReimbursementDAO reimbDAO = new ErsReimbursementDAO();
+        //TODO do I need a reimbursement service?
+
+
         // Programmatic Servlet Registration
         ServletContext context = sce.getServletContext();
         context.addServlet("UserServlet", userServlet).addMapping("/users/*");
+       // context.addServlet("UserServlet", userServlet).addMapping("/users");
         context.addServlet("AuthServlet", authServlet).addMapping("/auth");
-
+        //context.addServlet("ReimbServlet", reimbServlet).addMapping("/reimbursements");//get all reimbursements? make reimbursements?
+        //TODO add endpoint to users or own endpoint?
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("Shutting down Quizzard web application");
+        System.out.println("Shutting down Foundations web application");
     }
 
 }
