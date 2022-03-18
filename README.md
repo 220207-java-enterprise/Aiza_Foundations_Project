@@ -6,13 +6,13 @@ intellij uses models, DAOs, Services, and Servlets to produce these outcomes in 
 
 # Technologies Used
 postgresql - version 42.3.3
-javax.servlet-api - version 4.0.1
-jjwt - version 0.9.1
-jackson-core - jackson.version
-jackson-databind - jackson.version
-junit - 4.13.2
-mockito-core - 4.3.1
-tomcat7-maven-plugin - 2.2
+\navax.servlet-api - version 4.0.1
+\njjwt - version 0.9.1
+\njackson-core - jackson.version
+\njackson-databind - jackson.version
+\njunit - 4.13.2
+\nmockito-core - 4.3.1
+\ntomcat7-maven-plugin - 2.2
 
 # Features
 List of features ready and TODOs for future development
