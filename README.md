@@ -35,7 +35,7 @@ Log the sytem of info, error, and fatal events that occur<br />
 1. Set up Java, Maven, Postman, Gitbash, Intellij, Docker, DBeaver, and Tomcat.
 2. Type in the command line in gitbash: git clone https://github.com/220207-java-enterprise/Aiza_Foundations_Project.git 
 3. Open the Foundations folder in Intellij.
-4. Run Docker and connect to DBeaver. 
+4. Run Docker and connect to DBeaver. <br />
 ![](images/DB_not.PNG) 
 ![](images/DB_yes.PNG)
 5.  Open table-creations.sql and dummy2.sql in DBeaver and run all the tables and all of the queries.
