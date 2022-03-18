@@ -5,14 +5,14 @@ an employee can check if they are within the system, and an admin can get access
 intellij uses models, DAOs, Services, and Servlets to produce these outcomes in Postman.
 
 # Technologies Used
-postgresql - version 42.3.3
-\navax.servlet-api - version 4.0.1
-\njjwt - version 0.9.1
-\njackson-core - jackson.version
-\njackson-databind - jackson.version
-\njunit - 4.13.2
-\nmockito-core - 4.3.1
-\ntomcat7-maven-plugin - 2.2
+postgresql - version 42.3.3<br />
+avax.servlet-api - version 4.0.1<br />
+jjwt - version 0.9.1<br />
+jackson-core - jackson.version<br />
+jackson-databind - jackson.version<br />
+junit - 4.13.2<br />
+mockito-core - 4.3.1<br />
+tomcat7-maven-plugin - 2.2<br />
 
 # Features
 List of features ready and TODOs for future development
