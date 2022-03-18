@@ -15,20 +15,20 @@ mockito-core - 4.3.1<br />
 tomcat7-maven-plugin - 2.2<br />
 
 # Features
-List of features ready and TODOs for future development
+List of features ready and TODOs for future development<br />
 
-An authenticated financial manager can approve or deny requests
-An Authenticated emplyee can access their reimbursement history
-An Admin can deactivate user accounts
-An Admin can reset a registered user's password
-System will register itself with a 3rd party PRISM application
+An authenticated financial manager can approve or deny requests<br />
+An Authenticated emplyee can access their reimbursement history<br />
+An Admin can deactivate user accounts<br />
+An Admin can reset a registered user's password<br />
+System will register itself with a 3rd party PRISM application<br />
 
 # To-do list:
 
-Add features to code
-80% line coverage in all service and utility classes
-Conforming system to RESTful architecture constraints
-Log the sytem of info, error, and fatal events that occur
+Add features to code<br />
+80% line coverage in all service and utility classes<br />
+Conforming system to RESTful architecture constraints<br />
+Log the sytem of info, error, and fatal events that occur<br />
 
 # Getting Started
 (include git clone command) (include all environment setup steps)
@@ -40,13 +40,13 @@ All the code required to get started
 Images of what it should look like
 Usage
 Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
-1. Set up java, maven, postman, gitbash, intellij, docker, DBeaver, and tomcat.
-2. Use in the command line in gitbash: git clone https://github.com/220207-java-enterprise/Aiza_Foundations_Project.git 
-3. Open the Foundations folder in intellij.
-4. Run docker and connect to DBeaver. 
-5. Open table-creations.sql and dummy2.sql in DBeaver and run them.
-6. In the terminal using deploy tomcat with the command: mvn tomcat7:deploy
-7. Now you can use the API in postman.
+1. Set up Java, Maven, Postman, Gitbash, Intellij, Docker, DBeaver, and Tomcat.
+2. Type in the command line in gitbash: git clone https://github.com/220207-java-enterprise/Aiza_Foundations_Project.git 
+3. Open the Foundations folder in Intellij.
+4. Run Docker and connect to DBeaver. 
+5.  Open table-creations.sql and dummy2.sql in DBeaver and run all the tables and all of the queries.
+6. In the local terminal in Intellij, deploy Tomcat with the command: mvn tomcat7:deploy
+7. Now you can use the API in Postman.
 
 # License
 This project uses the following license: <license_name>.
