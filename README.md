@@ -31,15 +31,7 @@ Conforming system to RESTful architecture constraints<br />
 Log the sytem of info, error, and fatal events that occur<br />
 
 # Getting Started
-(include git clone command) (include all environment setup steps)
 
-Be sure to include BOTH Windows and Unix command
-Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
-
-All the code required to get started
-Images of what it should look like
-Usage
-Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 1. Set up Java, Maven, Postman, Gitbash, Intellij, Docker, DBeaver, and Tomcat.
 2. Type in the command line in gitbash: git clone https://github.com/220207-java-enterprise/Aiza_Foundations_Project.git 
 3. Open the Foundations folder in Intellij.
