@@ -32,17 +32,20 @@ Log the sytem of info, error, and fatal events that occur<br />
 
 # Getting Started
 
-1. Set up Java, Maven, Postman, Gitbash, Intellij, Docker, DBeaver, and Tomcat.
+1. Set up Java 8, Maven 3, Postman, Gitbash, Intellij, Docker, DBeaver, and Apache Tomcat 9.
+<!-- ![](images/environment.PNG) -->
 2. Type in the command line in gitbash: git clone https://github.com/220207-java-enterprise/Aiza_Foundations_Project.git 
-3. Open the Foundations folder in Intellij.
-4. Run Docker and connect to DBeaver. <br />
+
+# Usage
+1. Open the Foundations folder in Intellij.
+2. Run Docker and connect to DBeaver. <br />
 ![](images/DB_not.PNG) 
 ![](images/DB_yes.PNG)
-5.  Open table-creations.sql and dummy2.sql in DBeaver and run all the tables and all of the queries.
+3.  Open table-creations.sql and dummy2.sql in DBeaver and run all the tables and all of the queries.
 ![](images/DB_table.PNG)
-6. In the local terminal in Intellij, deploy Tomcat with the command: mvn tomcat7:deploy
+4. In the local terminal in Intellij, deploy Tomcat with the command: mvn tomcat7:deploy
 ![](images/Terminal_mvn.PNG)
-7. Now you can use the API in Postman.
+5. Now you can use the API in Postman.
 
 # License
 This project uses the following license: <license_name>.
