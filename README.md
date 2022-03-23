@@ -33,7 +33,7 @@ Log the sytem of info, error, and fatal events that occur<br />
 # Getting Started
 
 1. Set up Java 8, Maven 3, Postman, Gitbash, Intellij, Docker, DBeaver, and Apache Tomcat 9.
-<!-- ![](images/environment.PNG) -->
+![](images/environment.PNG)
 2. Type in the command line in gitbash: git clone https://github.com/220207-java-enterprise/Aiza_Foundations_Project.git 
 
 # Usage
