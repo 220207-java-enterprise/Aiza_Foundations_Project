@@ -5,30 +5,33 @@ an employee can check if they are within the system, and an admin can get access
 intellij uses models, DAOs, Services, and Servlets to produce these outcomes in Postman.
 
 # Technologies Used
-postgresql - version 42.3.3<br />
-avax.servlet-api - version 4.0.1<br />
-jjwt - version 0.9.1<br />
-jackson-core - jackson.version<br />
-jackson-databind - jackson.version<br />
-junit - 4.13.2<br />
-mockito-core - 4.3.1<br />
-tomcat7-maven-plugin - 2.2<br />
+* java - version 1.8.0
+* apache maven - version 3.8.4
+* intellij - version 2021.3.2
+* postgresql - version 42.3.3<br />
+* avax.servlet-api - version 4.0.1<br />
+* jjwt - version 0.9.1<br />
+* jackson-core - jackson.version<br />
+* jackson-databind - jackson.version<br />
+* junit - 4.13.2<br />
+* mockito-core - 4.3.1<br />
+* tomcat7-maven-plugin - 2.2<br />
+* postman
 
 # Features
-List of features ready and TODOs for future development<br />
 
-An authenticated financial manager can approve or deny requests<br />
-An Authenticated emplyee can access their reimbursement history<br />
-An Admin can deactivate user accounts<br />
-An Admin can reset a registered user's password<br />
-System will register itself with a 3rd party PRISM application<br />
+* An authenticated financial manager can approve or deny requests<br />
+* An Authenticated emplyee can access their reimbursement history<br />
+* An Admin can deactivate user accounts<br />
+* An Admin can reset a registered user's password<br />
+* System will register itself with a 3rd party PRISM application<br />
 
 # To-do list:
 
-Add features to code<br />
-80% line coverage in all service and utility classes<br />
-Conforming system to RESTful architecture constraints<br />
-Log the sytem of info, error, and fatal events that occur<br />
+* Add features to code<br />
+* 80% line coverage in all service and utility classes<br />
+* Conforming system to RESTful architecture constraints<br />
+* Log the sytem of info, error, and fatal events that occur<br />
 
 # Getting Started
 
@@ -48,4 +51,4 @@ Log the sytem of info, error, and fatal events that occur<br />
 5. Now you can use the API in Postman.
 
 # License
-This project uses the following license: <license_name>.
+This project uses the following license: 
